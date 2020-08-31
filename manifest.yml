@@ -1,0 +1,6 @@
+---
+applications:
+- name: cpidoc
+  command: python script.py
+  
+  

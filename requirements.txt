@@ -1,0 +1,5 @@
+Flask==1.1.1
+python-docx==0.8.7
+sap-cf-logging==4.1.1
+Flask-Cors==3.0.8
+docxtpl==0.6.3
