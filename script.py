@@ -29,10 +29,10 @@ def index():
         for y in x1: 
             for key, value in y.items():   
                 if key == "Content Modifier":
-                    if 'propertyTable' in value:
-                        value['propertyTable'] = json.loads(value['propertyTable'])
-                    if 'headerTable' in value:   
-                        value['headerTable'] = json.loads(value['headerTable'])
+                    if 'Properties' in value:
+                        value['Properties'] = json.loads(value['Properties'])
+                    if 'Headers' in value:   
+                        value['Headers'] = json.loads(value['Headers'])
                     
     
     for x in cont:   
@@ -40,10 +40,10 @@ def index():
         for y in x1: 
             for key, value in y.items():   
                 if key == "Content Modifier":
-                    if 'propertyTable' in value:
-                        value['propertyTable'] = json.loads(value['propertyTable'])
-                    if 'headerTable' in value:   
-                        value['headerTable'] = json.loads(value['headerTable'])
+                    if 'Properties' in value:
+                        value['Properties'] = json.loads(value['Properties'])
+                    if 'Headers' in value:   
+                        value['Headers'] = json.loads(value['Headers'])
 
 
     
