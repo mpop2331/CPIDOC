@@ -8,7 +8,7 @@ from sap.cf_logging import flask_logging
 import logging
 from flask_cors import CORS
 import json
-
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 flask_logging.init(app, logging.INFO)
@@ -79,8 +79,8 @@ def index():
     embedded_docx_tpl.render(context,autoescape=True)
     embedded_docx_tpl.save('embedded_embedded_xsd.docx')
 
-    #template = DocxTemplate('MyTemplate.docx')
-    template = DocxTemplate(source_stream)
+    template = DocxTemplate('MyTemplate.docx')
+    #template = DocxTemplate(source_stream)
 
     target_file = io.BytesIO()
     template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
@@ -116,6 +116,21 @@ def index1():
     document.save(target_file)
     target_file.seek(0)
     return send_file(target_file, as_attachment=True, attachment_filename='report.docx')
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    # start with the correct headers and status code from the error
+    response = e.get_response()
+    # replace the body with JSON
+    response.data = json.dumps({
+        "code": e.code,
+        "name": e.name,
+        "description": "Something goes wrong on the server-side. Please revision the template configurations.",
+    })
+    response.content_type = "application/json"
+    response.status = '200'
+    return response
 
 
 #if __name__ == "__main__":
