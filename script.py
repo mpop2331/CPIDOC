@@ -87,7 +87,7 @@ def index():
     #template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
     #template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
     #template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
-    template.render(context,autoescape=True)
+    #template.render(context,autoescape=True)
     template.save(target_file)
     
     
