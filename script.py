@@ -83,17 +83,17 @@ def index():
     #template = DocxTemplate(source_stream)
 
     target_file = io.BytesIO()
-    template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
-    template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
-    template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
-    template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
+    #template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
+    #template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
+    #template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
+    #template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
     template.render(context,autoescape=True)
     template.save(target_file)
     
     
     target_file.seek(0)
    
-    return send_file(target_file, as_attachment=True, attachment_filename='report.docx')
+    return send_file(target_file, as_attachment=True, download_name='report.docx')
     
 
 @app.route('/genrate_temp/',methods = ['GET'])
@@ -115,7 +115,7 @@ def index1():
     
     document.save(target_file)
     target_file.seek(0)
-    return send_file(target_file, as_attachment=True, attachment_filename='report.docx')
+    return send_file(target_file, as_attachment=True, download_name='report.docx')
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
