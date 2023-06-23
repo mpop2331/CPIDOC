@@ -79,21 +79,21 @@ def index():
     embedded_docx_tpl.render(context,autoescape=True)
     embedded_docx_tpl.save('embedded_embedded_xsd.docx')
 
-    #template = DocxTemplate('MyTemplate.docx')
-    template = DocxTemplate(source_stream)
+    template = DocxTemplate('MyTemplate.docx')
+    #template = DocxTemplate(source_stream)
 
     target_file = io.BytesIO()
     #template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
     #template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
     #template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
     #template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
-    #template.render(context,autoescape=True)
-    #template.save(target_file)
+    template.render(context,autoescape=True)
+    template.save(target_file)
     
     
-    #target_file.seek(0)
+    target_file.seek(0)
    
-    return send_file(source_stream, as_attachment=True, download_name='report.docx')
+    return send_file(target_file, as_attachment=True, download_name='report.docx')
     
 
 @app.route('/genrate_temp/',methods = ['GET'])
