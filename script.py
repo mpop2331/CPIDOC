@@ -78,15 +78,17 @@ def index():
     embedded_docx_tpl=DocxTemplate('embedded_embedded_docx_xsd_tpl.docx')
     embedded_docx_tpl.render(context,autoescape=True)
     embedded_docx_tpl.save('embedded_embedded_xsd.docx')
-
-    template = DocxTemplate('MyTemplate.docx')
-    #template = DocxTemplate(source_stream)
+    # Use template localy
+    #template = DocxTemplate('MyTemplate.docx')
+    
+    #Use template that came from request
+    template = DocxTemplate(source_stream)
 
     target_file = io.BytesIO()
-    #template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
-    #template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
-    #template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
-    #template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
+    template.replace_embedded('embedded_dummy_map.docx','embedded_embedded_map.docx')
+    template.replace_embedded('embedded_dummy_groovy.docx','embedded_embedded_groovy.docx')
+    template.replace_embedded('embedded_dummy_wsdl.docx','embedded_embedded_wsdl.docx')
+    template.replace_embedded('embedded_dummy_xsd.docx','embedded_embedded_xsd.docx')
     template.render(context,autoescape=True)
     template.save(target_file)
     
